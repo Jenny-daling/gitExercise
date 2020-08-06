@@ -1,0 +1,19 @@
+// 使用sass编写css代码 
+// css文件的压缩模式会去掉注释
+/*！这是一个强制注释*/
+$color:#f00;    //变量
+$w:200px;
+#div1{
+    width:$w;
+    height:$w;
+    background:$color;
+    .aa{
+        font-size: 12px;
+    }
+}
+#div2{
+    color:$color;   
+}
+#div3{
+    width:$w;
+}
