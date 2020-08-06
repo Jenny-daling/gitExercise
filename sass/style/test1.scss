@@ -1,0 +1,85 @@
+// @import 'index.scss';   //导入另一个sass文件
+
+//属性值之间的加减乘除
+#div8{
+    width:10*10px;
+    height:(20px / 10);   //除法并不适用 必须要加上括号才会进行运算
+    background:#ccc url(xx.jpg) no-repeat left top/cover;
+    font-size: 20px/15;
+}
+// $rg:rgba(255,0,0,0.8);
+$rg:rgb(100,100,100);
+#div9{
+    width:percentage(3/100);
+    // background:lighten($rg,20%);     //颜色更浅
+    background: opacify($rg,.2);    //更不透明
+}
+// 列表长度（5px,10px)
+// 返回索引：index（1px solid #000,solid)
+// 返回索引对应的值：nth(5px 10px,2)
+// 列表后面追加值:append(5px 5px,10px)
+// 合并列表：join（5px 5px，10px 10px，comma)
+
+// map-keys($m) 返回所有key
+// map-values($m); 返回所有value
+// map-has-key($m,light) 是否包含某键值
+// map-merge($m,(gray:#ccc)) 合并map
+// map-remove（$m,light,dark);  移除
+$m:(light:#fff,dark:#000);
+#div10{
+    // background: map-get($m,dark);   //获取表示颜色的键值对
+    background: map-key($m);
+}
+
+// 编写一个函数
+@function foo($arg){
+    @if($arg==1){
+        @return #000;
+    }@else if($arg==2){
+        @return #fff;
+    }@else{
+        @return #ccc;
+    }
+}
+// 调用该函数
+#div12{
+    background: foo(2);
+}
+
+// for循环 through是小于等于 to是小于
+$column:12;
+@for $i from 1 through $column{
+    .col-log-#{$i}{     //可以用于实现栅格系统
+        width:percentage($i/100);
+    }
+}
+
+// each遍历
+$icons:plus music search heart;
+@each $icon in $icons{
+    .lyphicon-#{$icon}{
+        background:url($icon+'.png');
+    }
+}
+
+// while循环
+$i:5;
+@while $i>0 {
+    .col-md-#{$i}{
+        width:percentage($i / 100);
+    }
+    $i:$i - 1;
+}
+
+$map: (light:#fff,dark:#000);
+@function get-color($color){
+    @if(map-has-key($map,$color)){
+        @return map-get($map,$color);
+    }@else if(){
+        @warn '你传入的颜色不存在';
+        @return #ccc;
+    }   
+}
+#div13{
+    background:get-color(light);
+}

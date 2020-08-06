@@ -23,3 +23,58 @@ $w:200px;
 #div3{
     width:$w;
 }
+.dialog{
+    width:$w;
+    &-container{
+        height:$w;
+    }
+    &-title{
+        font-size: 28px;
+        &-close{
+            float:left;
+            background: {
+                color:$color;
+                image:url(xx.jpg);
+                position: right top;
+            };
+            border:{
+                left:{
+                    color:transparent;
+                    style:solid;
+                    width:2px;
+                }
+            }
+        }
+    }
+}
+
+$bg:background;         //将属性存储为变量，方便简写
+#div4{
+    #{$bg}:$color;
+}
+
+// mixin 混合 样式函数块
+@mixin xx($num,$c) {    //传递的参数 相当于函数
+    width:$num;
+    height:$num;
+    background: $c;
+}
+#div5{
+    @include xx($num:200px,$c:#f00);    //使用的是mixin定义的xx的属性值 调用xx（）函数
+    font-size: 20px;
+}
+#div6{
+    @include xx($num:300px,$c:#0f0);    //如果函数参数顺序不对也可以通过参数名来确定
+    .aa{        //子代也会被继承
+        background: $color;
+    }
+}
+
+
+// 继承和import
+#div7{
+    @extend #div6;
+    font-size:20px;
+}
+//在一个文件中引入另一个文件
+
