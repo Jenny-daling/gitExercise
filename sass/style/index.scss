@@ -9,6 +9,12 @@ $w:200px;
     background:$color;
     .aa{
         font-size: 12px;
+        .bb{
+            background: #ccc;
+        }
+        &:hover{
+            background: #0f0;
+        }
     }
 }
 #div2{
